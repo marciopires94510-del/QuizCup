@@ -1,0 +1,543 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #15324f;
+  background: #f2f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-width: 320px; }
+* { box-sizing: border-box; letter-spacing: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; font: inherit; }
+a { text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #059669;
+  outline-offset: 5px;
+}
+#root { min-height: 100svh; }
+#root > div > .bg-gray-200 { min-height: 100svh; background: #f2f8fc; }
+#root > div > .bg-gray-200 > div:has(footer) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.profile-page, .losePage {
+  background: linear-gradient(120deg, #19446e 0%, #2a77aa 65%, #047857 100%);
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+  color: #17324d;
+}
+
+.losePage {
+  padding: 36px 15px 25px;
+}
+.profile-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.profile-eyebrow, .textLose {
+  text-align: center;
+  margin: 0 0 8px;
+  color: #810303;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.profile-heading h1 {
+  margin: 0;
+  color: #102a43;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.08;
+  font-weight: 800;
+}
+.profile-subtitle {
+  margin: 12px 0 0;
+  color: #5b7187;
+  font-size: 16px;
+}
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid #b8e4d3;
+  border-radius: 999px;
+  background: #effbf6;
+  color: #087f73;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.profile-status::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  content: '';
+}
+.profile-card {
+  overflow: hidden;
+  border: 1px solid #c9dce8;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 40px #17324d12;
+}
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 32px;
+  background: linear-gradient(115deg, #edf8ff 0%, #ffffff 72%);
+}
+.profile-avatar-wrap { position: relative; flex: 0 0 auto; }
+.profile-avatar {
+  display: block;
+  width: 104px;
+  height: 104px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: #d9efff;
+  object-fit: cover;
+  box-shadow: 0 8px 20px #075a9130;
+}
+.profile-online {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 17px;
+  height: 17px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #10b981;
+}
+.profile-label {
+  margin: 0 0 7px;
+  color: #087f73;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.profile-identity h2 { margin: 0; color: #102a43; font-size: 28px; line-height: 1.2; }
+.profile-meta { margin: 8px 0 0; color: #6d8295; font-size: 14px; }
+.profile-divider { height: 1px; margin: 0 32px; background: #dbe8ef; }
+.profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 26px 32px 30px; }
+.profile-stat { display: flex; flex-direction: column; gap: 7px; padding: 4px 28px; border-right: 1px solid #dbe8ef; }
+.profile-stat:first-child { padding-left: 0; }
+.profile-stat:last-child { padding-right: 0; border-right: 0; }
+.profile-stat-value { color: #075a91; font-size: 30px; font-weight: 800; line-height: 1; }
+.profile-stat-label { color: #6d8295; font-size: 13px; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .profile-page { padding: 36px 16px 48px; }
+  .profile-heading { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+  .profile-identity { padding: 24px 20px; }
+  .profile-avatar { width: 84px; height: 84px; }
+  .profile-identity h2 { font-size: 23px; }
+  .profile-divider { margin: 0 20px; }
+  .profile-stats { padding: 22px 20px 24px; }
+  .profile-stat { padding: 4px 12px; }
+  .profile-stat-value { font-size: 25px; }
+  .profile-stat-label { font-size: 12px; }
+}
+
+/* Existing component classes keep the presentation independent of game logic. */
+.bg-gradient-to-r:has(a[href='/inicio']) {
+  background: linear-gradient(120deg, #082f57 0%, #075a91 65%, #047857 100%);
+  border-bottom: 4px solid #34d399;
+  padding: 24px max(24px, calc((100% - 1080px) / 2));
+}
+.bg-gradient-to-r > a[href='/inicio'] {
+  display: inline-block;
+  padding: 0;
+  color: #f0f9ff;
+  font-size: 30px;
+  font-weight: 800;
+}
+.p-8:has(> nav.grid-cols-3) {
+  width: min(100%, 1128px);
+  margin: 0 auto;
+  padding: 32px 24px 0;
+}
+nav.grid-cols-3 {
+  margin: 0;
+  padding: 0 0 24px;
+  gap: 16px;
+  border-bottom: 1px solid #cfe2ed;
+}
+nav.grid-cols-3 > a {
+  @apply bg-gradient-to-b from-[#18B8F2] via-[#078AF0] to-[#0059D9];
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 16px;
+  border: 1px solid #cfe2ed;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 650;
+  box-shadow: 0 2px 3px #0059d918;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+nav.grid-cols-3 img { width: 28px; height: 28px; object-fit: contain; margin: 0; }
+.grid.grid-cols-2:has(> a[href='/futebol']) {
+  width: min(100%, 1128px);
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  gap: 28px;
+  align-items: stretch;
+}
+.grid.grid-cols-2 > a {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  overflow: hidden;
+  background: #e2f5ed;
+  border: 1px solid #b8e4d3;
+  border-radius: 8px;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.grid.grid-cols-2 > a:first-child { background: #e4f1ff; border-color: #bfdcfa; }
+.grid.grid-cols-2 > a > img {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+footer.bg-blue-800 {
+  margin-top: auto;
+  padding: 24px;
+  background: #082f57;
+  color: #d5eaf8;
+  border-top: 3px solid #34d399;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+nav:has(> h2) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+  background: linear-gradient(120deg, #082f57 0%, #075a91 65%, #047857 100%);
+  padding: 56px max(24px, calc((100% - 760px) / 2)) 32px;
+  border-bottom: 4px solid #34d399;
+  box-shadow: none;
+}
+nav > h2:first-child {
+  grid-column: 1 / -1;
+  min-height: 76px;
+  align-content: center;
+  color: #fff;
+  font-size: 26px;
+  line-height: 1.45;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+nav > h2:not(:first-child) {
+  color: #a7f3d0;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+nav + .flex.flex-col {
+  width: min(100%, 808px);
+  margin: 0 auto;
+  padding: 36px 24px 56px;
+  gap: 14px;
+}
+nav + .flex.flex-col > button {
+  width: 100%;
+  min-height: 64px;
+  padding: 18px 24px;
+  border: 1px solid #c8ddec;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  box-shadow: 0 3px 0 #d3e5f2;
+  transition: background .16s, border-color .16s, box-shadow .16s;
+}
+nav + .flex.flex-col > .bg-blue-500 { background: #fff; color: #153e63; }
+nav + .flex.flex-col > .bg-green-500 { background: #047857; color: #fff; border-color: #065f46; box-shadow: 0 3px 0 #065f46; }
+nav + .flex.flex-col > .bg-red-500 { background: #bc3646; color: #fff; border-color: #9c2937; box-shadow: 0 3px 0 #9c2937; }
+
+#root > .bg-blue-300 {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px 24px;
+  background: linear-gradient(120deg, #082f57 0%, #075a91 65%, #047857 100%);
+  color: #fff;
+  border-top: 6px solid #34d399;
+}
+#root > .bg-blue-300 h1 { font-size: 56px; font-weight: 800; line-height: 1.15; }
+#root > .bg-blue-300 button {
+  min-width: 180px;
+  min-height: 54px;
+  padding: 14px 32px;
+  border-radius: 8px;
+  background: #34d399;
+  color: #063b35;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #059669;
+}
+.bg-gray-200 > div > h2.text-xl {
+  max-width: 1080px;
+  margin: auto;
+  padding: 48px 24px;
+  color: #153e63;
+  font-size: 28px;
+  border-bottom: 1px solid #cfe2ed;
+}
+@media (hover: hover) {
+  nav.grid-cols-3 > a:hover { border-color: #0059D9; transform: translateY(-2px); }
+  .grid.grid-cols-2 > a:hover { transform: translateY(-4px); box-shadow: 0 12px 28px #0059d91a; border-color: #10b981; }
+  nav + .flex.flex-col > .bg-blue-500:hover { background: #e7f5ff; border-color: #38bdf8; }
+  #root > .bg-blue-300 button:hover { background: #6ee7b7; }
+}
+@media (max-width: 600px) {
+  .bg-gradient-to-r:has(a[href='/inicio']) { padding: 20px; }
+  .p-8:has(> nav.grid-cols-3) { padding: 24px 16px 0; }
+  nav.grid-cols-3 { gap: 8px; padding-bottom: 20px; }
+  nav.grid-cols-3 > a { flex-direction: column; gap: 8px; padding: 12px 4px; font-size: 13px; }
+  .grid.grid-cols-2:has(> a[href='/futebol']) { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 24px 16px 32px; }
+  .grid.grid-cols-2 > a { padding: 16px; }
+  .grid.grid-cols-2 > a > img { max-width: 320px; }
+  nav:has(> h2) { padding: 36px 20px 24px; }
+  nav > h2:first-child { font-size: 22px; }
+  nav + .flex.flex-col { padding: 24px 16px 40px; }
+  nav + .flex.flex-col > button { font-size: 16px; padding: 16px; }
+  #root > .bg-blue-300 h1 { font-size: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+
+/* Visual refinement shared across the existing quiz screens. */
+:root {
+  color: #23334a;
+  background: #f4f6fa;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: #b9eddb; color: #102d29; }
+#root > div > .bg-gray-200 {
+  background: radial-gradient(ellipse at top right, #e8f2f4, transparent 55%), #f4f6fa;
+}
+.bg-gradient-to-r:has(a[href='/inicio']) {
+  padding: 22px max(24px, calc((100% - 1080px) / 2));
+  gap: 16px;
+  background: #14283f;
+  border-bottom: 1px solid #294259;
+  box-shadow: 0 4px 20px #13283f0a;
+}
+.bg-gradient-to-r > a[href='/inicio'] {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  font-size: 27px;
+  letter-spacing: -1px;
+}
+.bg-gradient-to-r > a[href='/profile'] {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  margin: 0;
+  border: 1px solid #ffffff20;
+  border-radius: 14px;
+  background: #ffffff0b;
+  transition: background .18s;
+}
+.bg-gradient-to-r > a[href='/profile'] img { width: 100%; height: 100%; object-fit: contain; }
+.p-8:has(> nav.grid-cols-3) { padding-top: 36px; }
+nav.grid-cols-3 { gap: 18px; border-color: #dde4ed; padding-bottom: 28px; }
+nav.grid-cols-3 > a {
+  min-height: 76px;
+  border: 1px solid #dfe6ee;
+  border-radius: 16px;
+  background: #fff;
+  color: #294158;
+  font-size: 15px;
+  box-shadow: 0 4px 12px #14283f04;
+}
+nav.grid-cols-3 img { width: 32px; height: 32px; }
+.grid.grid-cols-2:has(> a[href='/futebol']) { padding-top: 28px; gap: 24px; }
+.grid.grid-cols-2 > a,
+.grid.grid-cols-2 > a:first-child {
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid #dce5ef;
+  background: linear-gradient(145deg, #fff, #eaf1fa);
+  box-shadow: 0 8px 24px #14283f06;
+}
+.grid.grid-cols-2 > a[href='/futebol'] {
+  background: linear-gradient(145deg, #fff, #e6f3ed);
+  border-color: #d4e7dd;
+}
+.grid.grid-cols-2 > a > img { max-width: 340px; }
+footer.bg-blue-800 {
+  padding: 22px 24px;
+  background: #14283f;
+  color: #bbc9d8;
+  border-top: 1px solid #294259;
+  font-size: 12px;
+}
+/* Questions and their three existing status values. */
+nav:has(> h2) {
+  width: min( calc(100% - 48px), 800px);
+  margin: clamp(24px, 4vw, 40px) auto 0;
+  padding: 28px 32px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px 12px;
+  background: #14283f;
+  border: 1px solid #233d56;
+  border-radius: 24px;
+  box-shadow: 0 16px 40px #14283f12;
+}
+.bg-gray-200 > div:has(> nav > h2) { display: flow-root; padding-top: 0; }
+.bg-gray-200 > div:has(> nav > h2) > .bg-gradient-to-r {
+  width: 100%;
+  padding: 16px max(24px, calc((100% - 800px) / 2));
+}
+nav > h2:first-child {
+  min-height: 96px;
+  margin: 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ffffff16;
+  font-size: clamp(21px, 3vw, 28px);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+nav > h2:not(:first-child) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 8px;
+  border: 1px solid #ffffff16;
+  border-radius: 12px;
+  background: #ffffff08;
+  color: #dde8f2;
+  font-size: 13px;
+}
+nav > h2:nth-child(2) { color: #fde0a1; }
+nav > h2:last-child { color: #9ee7c9; }
+nav + .flex.flex-col { width: min(100%, 848px); padding-top: 24px; gap: 12px; }
+nav + .flex.flex-col > button {
+  min-height: 68px;
+  padding: 19px 24px;
+  border-radius: 14px;
+  border-color: #dce3ec;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px #14283f04;
+  transition: background .18s, border-color .18s, transform .18s, box-shadow .18s;
+}
+nav + .flex.flex-col > .bg-blue-500 { color: #293f57; }
+nav + .flex.flex-col > .bg-green-500 { background: #087b56; border-color: #076747; box-shadow: 0 4px 14px #087b5620; }
+nav + .flex.flex-col > .bg-red-500 { background: #b83249; border-color: #a52a40; box-shadow: 0 4px 14px #b8324920; }
+.profile-page { padding-top: 64px; background: transparent; }
+.profile-heading h1 { color: #14283f; letter-spacing: -1.5px; }
+.profile-subtitle { color: #617287; }
+.profile-card { border-color: #dfe6ee; border-radius: 24px; box-shadow: 0 12px 36px #14283f08; }
+.profile-identity { padding: 36px; background: linear-gradient(110deg, #edf5f3, #fff 80%); }
+.profile-stat-value { color: #14283f; }
+.profile-stats { padding-top: 32px; padding-bottom: 36px; }
+#root > .bg-blue-300 {
+  gap: 28px;
+  background: radial-gradient(ellipse at 80% 10%, #244d63, transparent 55%), #14283f;
+  border-top: 4px solid #4bd6a5;
+}
+#root > .bg-blue-300 h1 { font-size: clamp(48px, 9vw, 80px); letter-spacing: -3px; }
+#root > .bg-blue-300 button {
+  min-width: 200px;
+  border-radius: 14px;
+  background: #63dfb5;
+  color: #102e29;
+  box-shadow: 0 8px 28px #00000020;
+  transition: background .18s, transform .18s;
+}
+/* The loss screen currently has no dedicated class. */
+.bg-gray-200 > div:has(> h1 + a[href='/futebol']) {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 32px 20px;
+  text-align: center;
+}
+.bg-gray-200 > div > h1:has(+ a[href='/futebol']) {
+  color: #14283f;
+  font-size: clamp(36px, 7vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+}
+.bg-gray-200 > div > h1 + a[href='/futebol'] {
+  padding: 16px 32px;
+  border-radius: 14px;
+  background: #14283f;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 8px 20px #14283f18;
+}
+.bg-gray-200 > div > h2.text-xl { color: #14283f; border-color: #dfe6ee; font-size: 32px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #10a77a; outline-offset: 4px; }
+@media (hover: hover) {
+  nav.grid-cols-3 > a:hover { background: #f9fcfb; border-color: #87bfae; box-shadow: 0 8px 20px #14283f08; }
+  .bg-gradient-to-r > a[href='/profile']:hover { background: #ffffff1c; }
+  .grid.grid-cols-2 > a:hover { border-color: #87bfae; box-shadow: 0 16px 32px #14283f0d; }
+  nav + .flex.flex-col > .bg-blue-500:hover { background: #eef7f4; border-color: #8cbdab; transform: translateY(-2px); }
+  #root > .bg-blue-300 button:hover { transform: translateY(-2px); }
+  .bg-gray-200 > div > h1 + a[href='/futebol']:hover { background: #244760; }
+}
+@media (max-width: 600px) {
+  .bg-gradient-to-r:has(a[href='/inicio']) { padding: 18px 16px; gap: 10px; }
+  .bg-gradient-to-r > a[href='/inicio'] { font-size: 23px; }
+  .bg-gradient-to-r > a[href='/profile'] { width: 38px; height: 38px; padding: 8px; border-radius: 12px; }
+  .p-8:has(> nav.grid-cols-3) { padding-top: 24px; }
+  nav.grid-cols-3 { gap: 10px; padding-bottom: 22px; }
+  nav.grid-cols-3 > a { min-height: 88px; font-size: 12px; border-radius: 14px; }
+  .grid.grid-cols-2:has(> a[href='/futebol']) { padding-top: 22px; gap: 16px; }
+  .grid.grid-cols-2 > a, .grid.grid-cols-2 > a:first-child { padding: 20px; border-radius: 20px; }
+  .grid.grid-cols-2 > a > img { max-width: 280px; }
+  nav:has(> h2) { width: calc(100% - 32px); padding: 24px 16px; gap: 22px 8px; border-radius: 20px; }
+  .bg-gray-200 > div:has(> nav > h2) > .bg-gradient-to-r { padding: 14px 16px; }
+  nav > h2:first-child { min-height: auto; padding-bottom: 20px; }
+  nav > h2:not(:first-child) { font-size: 12px; padding: 10px 4px; }
+  nav + .flex.flex-col > button { padding: 16px 20px; }
+  .profile-page { padding-top: 36px; }
+  .profile-identity { padding: 24px 20px; gap: 16px; }
+  .profile-stat { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
