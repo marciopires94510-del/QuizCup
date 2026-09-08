@@ -21,7 +21,7 @@ const Inicio = () => {
 
       "
       >
-        <img src='./public/icons/geral.png' className="w-[60%]"></img>
+        <img src='/icons/geral.png' className="w-[60%]"></img>
 
          </Link> 
       <Link 
@@ -37,7 +37,7 @@ const Inicio = () => {
 
       "
       >
-        <img src='./public/icons/futebol.png' className="w-[60%]"></img>
+        <img src='/icons/futebol.png' className="w-[60%]"></img>
 
 
          </Link> 

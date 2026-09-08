@@ -12,14 +12,14 @@ export default function NavBar() {
       p-8 
       "
       >
-        <img src='./public/icons/iconmain.png' alt="icon" className="w-10 h-10 inline-block mr-2"></img>
+        <img src='/icons/iconmain.png' alt="icon" className="w-10 h-10 inline-block mr-2"></img>
         QuizCup
         </Link>
         <Link to='/profile' className="w-10 h-10 shrink-0 inline-block mr-2">
-         <img src='./public/icons/profile.png'></img>
+         <img src='/icons/profile.png'></img>
         </Link>
         <Link to='/profile' className="w-10 h-10 shrink-0 inline-block mr-2">
-         <img src='./public/icons/otifs.png'></img>
+         <img src='/icons/otifs.png'></img>
         </Link>
     </div>
   )
