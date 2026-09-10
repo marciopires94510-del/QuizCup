@@ -47,7 +47,7 @@ export default function Cadastro() {
  } catch (erro){
     console.log(erro);
 
-    setError(error.message);
+    setError(erro.message);
     
  }
 
@@ -122,7 +122,11 @@ export default function Cadastro() {
             )}
           </select>
    
-          {error && <p className="form-feedback is-error">{erro}</p>}
+          {error && (
+  <p className="form-feedback is-error">
+    {error}
+  </p>
+)}
           <button className="screen-button" type="submit">
             Criar conta
           </button>
