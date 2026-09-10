@@ -10,6 +10,9 @@ import PerguntasFutebol from "./UI/Perguntas/PerguntasFutebol"
 import Titulos from "./UI/Statics/Titulos"
 import Profile from "./Profile/Profile"
 import Lost from "./UI/Lost/Lost"
+import LostGeral from "./UI/Lost/LostGeral"
+import Login from "./UI/Login/Login"
+import Cadastro from "./UI/Login/Cadastro"
 export default function App(){
 
  const [primeiraVisita, setPrimeiraVisita] = useState(
@@ -37,7 +40,10 @@ export default function App(){
         <Route path="/inicio" element={<Inicio/>}/>
         <Route path="/futebol" element={<PerguntasFutebol/>}/>
         <Route path="/page" element={<Page/>}/>
+        <Route path="/lostg" element={<LostGeral/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/cadastro" element={<Cadastro/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/lost" element={<Lost/>}/>
         <Route path="/points" element={<Points/>}/>
         <Route path="/ranking" element={<Ranking/>}/>

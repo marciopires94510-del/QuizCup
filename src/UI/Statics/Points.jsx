@@ -1,12 +1,2 @@
-
-const Points = () => {
-
-  return (
-    <div className='items-center judtify-between'>
-      <h2 className="text-xl font-bold text-gray-700">Points</h2>
-      
-    </div>
-  )
-}
-
-export default Points
+import StatsPage from "./StatsPage"
+export default function Points() { return <StatsPage title="Os meus pontos" description="Cada resposta certa é mais um passo no desafio." icon="/icons/coins.png" message="Ainda não há pontos registados" /> }

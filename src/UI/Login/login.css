@@ -1,0 +1,17 @@
+﻿.auth-page, .result-page { min-height: 100svh; display: grid; place-items: center; padding: 40px 20px; background: radial-gradient(ellipse at top left, #dceee7, transparent 55%), #f4f6fa; }
+.auth-card { width: min(100%, 480px); padding: 36px; border: 1px solid #dfe6ee; border-radius: 24px; background: #fff; box-shadow: 0 18px 50px #14283f0c; }
+.auth-brand { display: flex; align-items: center; gap: 10px; width: fit-content; margin-bottom: 32px; color: #14283f; font-size: 24px; font-weight: 800; }
+.auth-brand img { width: 40px; height: 40px; object-fit: contain; }
+.auth-card h1 { color: #14283f; font-size: clamp(26px, 5vw, 32px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; }
+.login { display: flex; flex-direction: column; margin-top: 28px; }
+.login label { margin-bottom: 8px; color: #294158; font-size: 14px; font-weight: 650; }
+.login input, .login select { width: 100%; min-height: 50px; margin-bottom: 20px; padding: 12px 14px; border: 1px solid #cbd7e3; border-radius: 12px; background: #f9fbfd; color: #14283f; font: inherit; font-size: 16px; }
+.login input::placeholder { color: #738295; }
+.login input:focus-visible, .login select:focus-visible { outline: 3px solid #10a77a; outline-offset: 2px; background: #fff; }
+.login input[aria-invalid='true'] { border-color: #b83249; }
+.login .form-feedback { margin: -10px 0 20px; color: #087b56; font-size: 13px; }
+.login .is-error { color: #b83249; }
+.auth-switch { margin: 24px 0; color: #617287; font-size: 14px; text-align: center; }
+.auth-switch a { color: #087b56; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.auth-card > .screen-back { display: block; text-align: center; }
+@media (max-width: 480px) { .auth-page { padding: 24px 16px; } .auth-card { padding: 28px 20px; border-radius: 20px; } }

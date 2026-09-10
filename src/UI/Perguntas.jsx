@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Perguntas = () => {
 
  const perguntase = [
@@ -64,24 +65,25 @@ const Perguntas = () => {
      const [selecionada, setSelecionada] = useState (null)
      const [vidas, setVidas] = useState (3)
      const [tempo, setTempo] = useState(10)
+     const [perdeu, setPerdeu] = useState(false)
 
-  useEffect(()=>{
-    if(tempo <= 0){
-      return(
-        <div>
-          <h1>
-            Tempo acabou a resposta errada
-          </h1>
-        </div>
-      )
-    }
-    const cronometro = setInterval(()=>{
-        setTempo(prev => prev - 1)
-      }, 1000)
-    
-    return ()=>{
-      clearInterval (cronometro)}
-  },[tempo])
+     
+         useEffect(()=>{
+             const cronometro = setInterval(()=>{
+                 setTempo(prev => prev - 1)
+               }, 1000)
+             
+             return ()=>{
+               clearInterval (cronometro)}
+           },[tempo])
+
+   const nave = useNavigate ()
+
+useEffect(() => {
+  if (tempo <= 0 || vidas <= 0) {
+    nave("/lostg");
+  }
+}, [perdeu, tempo, vidas, nave])
 
   return (
     <div className=" justify-center">
@@ -113,6 +115,7 @@ const Perguntas = () => {
             setIndice(Math.floor(Math.random() * perguntase.length))
             setPontos (p=> p + 20)
             setSelecionada(null)
+            setTempo(10)
           }, 500);
          }
          else{
@@ -120,6 +123,7 @@ const Perguntas = () => {
             setIndice(Math.floor(Math.random() * perguntase.length))
             setSelecionada(null)
             setVidas( prev => prev - 1)
+            setPerdeu(true)
           }, 500);;
          }
       

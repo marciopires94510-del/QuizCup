@@ -1,11 +1,2 @@
-import React from 'react'
-
-const Ranking = () => {
-  return (
-    <div>
-      <h2 className="text-xl font-bold text-gray-700">Ranking</h2>
-    </div>
-  )
-}
-
-export default Ranking
+import StatsPage from "./StatsPage"
+export default function Ranking() { return <StatsPage title="Ranking" description="Acompanhe a classificação dos jogadores." icon="/icons/rank.png" message="A classificação estará aqui" /> }

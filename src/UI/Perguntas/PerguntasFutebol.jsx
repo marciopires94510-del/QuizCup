@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Lost from '../Lost/Lost'
 import NavBar from '../../Layout/NavBar'
 const PerguntasFutebol = () => {
     const perguntas = [
@@ -1859,7 +1858,7 @@ const PerguntasFutebol = () => {
    const nave = useNavigate ()
 
 useEffect(() => {
-  if (perdeu || tempo <= 0 || vidas <= 0) {
+  if (tempo <= 0 || vidas <= 0) {
     nave("/lost");
   }
 }, [perdeu, tempo, vidas, nave])
