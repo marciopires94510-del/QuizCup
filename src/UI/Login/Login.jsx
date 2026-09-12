@@ -1,15 +1,35 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import './login.css'
+import { auth } from "../../Firebase/Firebase";
+import { signInWithEmailAndPassword} from "firebase/auth";
 export default function Login() {
 
  const [email, setEmail] = useState("")
  const [password, setPassword] = useState("")
+ const[error, setError] = useState("")
  const gate = useNavigate()
 
- function entrar(event) {
+  async function entrar(event) {
      event.preventDefault(); 
-    if (email && password) gate('/inicio') }
+    if (email === ""|| password === ""){
+      setError("Preencha os campos");
+      return
+    }
+    try{
+      const seek = await signInWithEmailAndPassword(
+           auth,
+      email,
+      password
+      )
+      console.log(seek.user)
+      setError("")
+      gate("/inicio")
+    } catch (erro){
+      setError(erro.message)
+    }
+   
+   }
 
  return <main className="auth-page">
     <section className="auth-card" aria-labelledby="login-title">
@@ -32,6 +52,7 @@ export default function Login() {
  placeholder="A sua palavra-passe" 
  value={password} onChange={e => 
  setPassword(e.target.value)} required />
+ {error && <p className="error">{error}</p>}
  <button className="screen-button" type="submit">Entrar</button></form>
  <p className="auth-switch">Ainda não tem conta?
      <Link to="/cadastro">Criar conta</Link></p>

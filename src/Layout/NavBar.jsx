@@ -19,8 +19,7 @@ export default function NavBar() {
         <img src='/icons/iconmain.png' alt="icon" className="w-10 h-10 inline-block mr-2"></img>
         QuizCup
         </Link>
-        <Link to='/cadastro' className="w-10 h-10 shrink-0 inline-block mr-2">Cadastar</Link>
-        <Link to='/login' className="w-10 h-10 shrink-0 inline-block mr-2">Entrar</Link>
+      
         <Link to='/profile' className="w-10 h-10 shrink-0 inline-block mr-2">
          <img src='/icons/profile.png'></img>
         </Link>

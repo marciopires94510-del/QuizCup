@@ -13,6 +13,7 @@ import Lost from "./UI/Lost/Lost"
 import LostGeral from "./UI/Lost/LostGeral"
 import Login from "./UI/Login/Login"
 import Cadastro from "./UI/Login/Cadastro"
+import RotaProtegida from "./UI/Login/Rota/RotaProtegida"
 export default function App(){
 
  const [primeiraVisita, setPrimeiraVisita] = useState(
@@ -37,18 +38,73 @@ export default function App(){
       <MainLayout>
       <Routes>
         <Route path="/" element={<Navigate to="/inicio" replace />} />
-        <Route path="/inicio" element={<Inicio/>}/>
-        <Route path="/futebol" element={<PerguntasFutebol/>}/>
-        <Route path="/page" element={<Page/>}/>
-        <Route path="/lostg" element={<LostGeral/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/cadastro" element={<Cadastro/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/lost" element={<Lost/>}/>
-        <Route path="/points" element={<Points/>}/>
-        <Route path="/ranking" element={<Ranking/>}/>
-        <Route path="/titulos" element={<Titulos/>}/>
-        <Route path="/perguntas" element={<Perguntas/>}/>
+        <Route path="/inicio" element={
+          <RotaProtegida>
+
+            <Inicio/>
+
+          </RotaProtegida>
+         }/>
+        <Route path="/futebol" element={
+           <RotaProtegida>
+            <PerguntasFutebol/>
+           </RotaProtegida>
+          }/>
+        <Route path="/page" element={
+           <RotaProtegida>
+            <Page/>
+            </RotaProtegida>
+          
+          }/>
+        <Route path="/lostg" element={
+           <RotaProtegida> 
+            <LostGeral/>
+           </RotaProtegida>
+          
+          
+          
+         }/>
+        <Route path="/profile" element={
+           <RotaProtegida>
+            <Profile/>
+           </RotaProtegida>
+          
+          
+          }/>
+        <Route path="/cadastro" element={
+          <Cadastro/>}/>
+        <Route path="/login" element={
+          <Login/>}/>
+        <Route path="/lost" element={
+           <RotaProtegida>
+            <Lost/>
+           </RotaProtegida>
+          
+          }/>
+        <Route path="/points" element={
+           <RotaProtegida>
+            <Points/>
+           </RotaProtegida>
+          
+          }/>
+        <Route path="/ranking" element={
+           <RotaProtegida>
+            <Ranking/>
+           </RotaProtegida>
+          
+          }/>
+        <Route path="/titulos" element={
+           <RotaProtegida>
+            <Titulos/>
+           </RotaProtegida>
+          
+          }/>
+        <Route path="/perguntas" element={
+           <RotaProtegida>
+            <Perguntas/>
+           </RotaProtegida>
+          
+          }/>
       </Routes>
       </MainLayout>
       </BrowserRouter>
